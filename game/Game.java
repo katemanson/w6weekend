@@ -5,12 +5,10 @@ public class Game {
 
   private ArrayList<Player> players;
   private Deck deck;
-  private int sizeOfHand;
 
-  public Game(int sizeOfHand) {
+  public Game() {
     this.players = new ArrayList<Player>();
     this.deck = new Deck();
-    this.sizeOfHand = sizeOfHand;
   }
 
   public Deck getDeck() {
@@ -30,10 +28,10 @@ public class Game {
     return this.players.get(index);
   }
 
-  public void deal(int sizeOfHand) {
+  public void deal(int numberOfCardsToDeal) {
     this.deck.buildStandardDeck();
     this.deck.shuffle();
-    for ( int i = 0; i < sizeOfHand; i++ ) {
+    for ( int i = 0; i < numberOfCardsToDeal; i++ ) {
       for ( Player player : this.players ) {
         Card dealtCard = this.deck.removeFirstCard();
         player.getHand().addCard(dealtCard);
@@ -73,6 +71,14 @@ public class Game {
       handValue += cardValue;
     }
     return handValue;
+  }
+
+  public void stickOrTwist(int playerIndex, String playerDecision) {
+    if (playerDecision == "T") {
+      Card dealtCard = this.deck.removeFirstCard();
+      getPlayer(playerIndex).getHand().addCard(dealtCard);
+    }
+    return;
   }
 
   public Player getWinner() {

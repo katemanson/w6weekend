@@ -17,14 +17,14 @@ public class HandTest {
 
   @Test
   public void handStartsEmpty() {
-    assertEquals(0, hand.cardCount());
+    assertEquals(0, hand.countCards());
   }
 
   @Test
   public void canAddCards() {
     hand.addCard(cardOne);
     hand.addCard(cardTwo);
-    assertEquals(2, hand.cardCount());
+    assertEquals(2, hand.countCards());
   }
 
   @Test
@@ -40,7 +40,7 @@ public class HandTest {
     hand.addCard(cardOne);
     hand.addCard(cardTwo);
     Card card = hand.removeCard(1);
-    assertEquals(1, hand.cardCount());
+    assertEquals(1, hand.countCards());
     assertEquals(Suit.CLUBS, card.getSuit());
     assertEquals(Rank.NINE, card.getRank());
   }

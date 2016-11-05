@@ -13,7 +13,7 @@ public class Hand {
     return this.hand;
   }
 
-  public int cardCount() {
+  public int countCards() {
     return this.hand.size();
   }
 
@@ -30,7 +30,7 @@ public class Hand {
   }
 
   // public int totalValue() {
-    
+
   // }
 
 }

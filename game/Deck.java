@@ -13,7 +13,7 @@ public class Deck {
     return this.deck;
   }
 
-  public int cardCount() {
+  public int countCards() {
     return this.deck.size();
   }
 

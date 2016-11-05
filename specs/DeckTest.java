@@ -15,19 +15,19 @@ public class DeckTest {
 
   @Test
   public void deckStartsEmpty() {
-    assertEquals(0, deck.cardCount());
+    assertEquals(0, deck.countCards());
   }
 
   @Test
   public void canAddCard() {
     deck.addCard(card);
-    assertEquals(1, deck.cardCount());
+    assertEquals(1, deck.countCards());
   }
 
   @Test
   public void canBuildStandardDeck() {
     deck.buildStandardDeck();
-    assertEquals(52, deck.cardCount());
+    assertEquals(52, deck.countCards());
   }
 
   @Test
@@ -47,7 +47,7 @@ public class DeckTest {
     assertEquals(Suit.SPADES, firstCard.getSuit());
     assertEquals(Rank.TWO, newFirstCard.getRank());
     assertEquals(Suit.SPADES, newFirstCard.getSuit());
-    assertEquals(51, deck.cardCount());
+    assertEquals(51, deck.countCards());
   }
 
 }
