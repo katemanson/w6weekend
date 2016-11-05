@@ -21,7 +21,7 @@ public class Game {
     return this.players;
   }
 
-  // ?creates new Player?
+  // ?okay to create new Player here ?
   public void addPlayer(String name) {
     this.players.add(new Player(name));
   }
@@ -41,24 +41,38 @@ public class Game {
     }
   }
 
-  // public void deal() {
-  //   Deck deck = this.deck.buildStandardDeck();
-  //   deck.shuffle();
-  //   for ( int i = 0; i < this.numberOfPlayers ; i++ )
-  //       for each player in turn
-  //     new up hand
-  //   then for number of cards in hand
-  //     remove first card from deck
-  //     add to each player's hand, in turn
-
-
-
-  //   for ( this.numberOfPlayers )
-
-
-
-  // }
-
-
+  public int getHandValueForPlayer(int playerIndex) {
+    Player player = getPlayer(playerIndex);
+    ArrayList<Card> hand = player.getHand().getHand();
+    int handValue = 0;
+    int cardValue = 0;
+    for (Card card : hand) {
+      switch (card.getRank()) {
+        case ACE: cardValue = 1;
+                  break;
+        case TWO: cardValue = 2;
+                  break;
+        case THREE: cardValue = 3;
+                  break;
+        case FOUR: cardValue = 4;
+                  break;
+        case FIVE: cardValue = 5;
+                  break;
+        case SIX: cardValue = 6;
+                  break;
+        case SEVEN: cardValue = 7;
+                  break;
+        case EIGHT: cardValue = 8;
+                  break;
+        case NINE: cardValue = 9;
+                  break;
+        case TEN: case JACK: case QUEEN: case KING:
+                  cardValue = 10;
+                  break;
+      } 
+      handValue += cardValue;
+    }
+    return handValue;
+  }
 
 }

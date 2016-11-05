@@ -6,10 +6,14 @@ import game.*;
 public class GameTest {
 
   Game game;
+  Card cardOne;
+  Card cardTwo;
 
   @Before
   public void before() {
     game = new Game(2);
+    cardOne = new Card(Suit.HEARTS, Rank.TWO);
+    cardTwo = new Card(Suit.CLUBS, Rank.KING);
   }
 
   @Test
@@ -38,14 +42,12 @@ public class GameTest {
     assertEquals(2, game.getPlayer(2).getHand().cardCount());
   }
 
-/*
   @Test
-  public void canDeal() {
-    game.deal();
-    assertEquals(2, <number of hands>());
-    assertEquals(2, <number of cards in each hand>());
+  public void canGetHandValueForPlayer() {
+    game.addPlayer("Player 0");
+    game.getPlayer(0).getHand().addCard(cardOne);
+    game.getPlayer(0).getHand().addCard(cardTwo);
+    assertEquals(12, game.getHandValueForPlayer(0));
   }
-*/
-
 
 }
