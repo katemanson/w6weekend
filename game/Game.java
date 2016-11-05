@@ -4,8 +4,8 @@ import java.util.*;
 public class Game {
 
   private ArrayList<Player> players;
-  private int sizeOfHand;
   private Deck deck;
+  private int sizeOfHand;
 
   public Game(int sizeOfHand) {
     this.players = new ArrayList<Player>();
@@ -73,6 +73,18 @@ public class Game {
       handValue += cardValue;
     }
     return handValue;
+  }
+
+  public Player getWinner() {
+    if (getHandValueForPlayer(0) > getHandValueForPlayer(1)) {
+      return getPlayer(0);
+    }
+    else if (getHandValueForPlayer(0) < getHandValueForPlayer(1)) {
+      return getPlayer(1);
+    }
+    else {
+      return null;
+    }
   }
 
 }

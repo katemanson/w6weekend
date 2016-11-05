@@ -6,14 +6,22 @@ import game.*;
 public class GameTest {
 
   Game game;
-  Card cardOne;
-  Card cardTwo;
+  Card twoOfHearts;
+  Card kingOfClubs;
+  Card aceOfDiamonds;
+  Card sevenOfSpades;
+  Card sixOfSpades;
+  Card sixOfClubs;
 
   @Before
   public void before() {
     game = new Game(2);
-    cardOne = new Card(Suit.HEARTS, Rank.TWO);
-    cardTwo = new Card(Suit.CLUBS, Rank.KING);
+    twoOfHearts = new Card(Suit.HEARTS, Rank.TWO);
+    kingOfClubs = new Card(Suit.CLUBS, Rank.KING);
+    aceOfDiamonds = new Card(Suit.DIAMONDS, Rank.ACE);
+    sevenOfSpades = new Card(Suit.SPADES, Rank.SEVEN);
+    sixOfSpades = new Card(Suit.SPADES, Rank.SIX);
+    sixOfClubs = new Card(Suit.CLUBS, Rank.SIX);
   }
 
   @Test
@@ -45,9 +53,31 @@ public class GameTest {
   @Test
   public void canGetHandValueForPlayer() {
     game.addPlayer("Player 0");
-    game.getPlayer(0).getHand().addCard(cardOne);
-    game.getPlayer(0).getHand().addCard(cardTwo);
+    game.getPlayer(0).getHand().addCard(twoOfHearts);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
     assertEquals(12, game.getHandValueForPlayer(0));
+  }
+
+  @Test
+  public void canGetWinner() {
+    game.addPlayer("Player 0");
+    game.getPlayer(0).getHand().addCard(twoOfHearts);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.addPlayer("Player 1");
+    game.getPlayer(1).getHand().addCard(aceOfDiamonds);
+    game.getPlayer(1).getHand().addCard(sevenOfSpades);
+    assertEquals("Player 0", game.getWinner().getName());
+  }
+
+  @Test
+  public void canGetDraw() {
+    game.addPlayer("Player 0");
+    game.getPlayer(0).getHand().addCard(twoOfHearts);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.addPlayer("Player 1");
+    game.getPlayer(1).getHand().addCard(sixOfSpades);
+    game.getPlayer(1).getHand().addCard(sixOfClubs);
+    assertEquals(null, game.getWinner());
   }
 
 }
