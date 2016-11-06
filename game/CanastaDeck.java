@@ -14,7 +14,9 @@ public class CanastaDeck extends Deck {
         this.cards.add(card);
       }
     }
-    this.cards.add(new Card(null, Rank.JOKER));
+    for ( int i = 0; i < 4; i++ ) {
+      this.cards.add(new Card(null, Rank.JOKER));
+    }
   }
 
 }

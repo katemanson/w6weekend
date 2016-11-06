@@ -15,7 +15,7 @@ public class CanastaDeckTest {
   @Test
   public void canBuildCanastaDeck() {
     deck.buildDeck();
-    assertEquals(105, deck.countCards());
+    assertEquals(108, deck.countCards());
   }
 
 }
