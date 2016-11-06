@@ -15,7 +15,7 @@ public class GameTest {
 
   @Before
   public void before() {
-    game = new Game();
+    game = new Game(new StandardDeck());
     twoOfHearts = new Card(Suit.HEARTS, Rank.TWO);
     kingOfClubs = new Card(Suit.CLUBS, Rank.KING);
     aceOfDiamonds = new Card(Suit.DIAMONDS, Rank.ACE);
@@ -149,6 +149,11 @@ public class GameTest {
     game.getPlayer(1).getHand().addCard(kingOfClubs);
     game.getPlayer(1).getHand().addCard(kingOfClubs);
     assertEquals(null, game.checkForWinner());
+  }
+
+  @Test
+  public void canGetDeckType() {
+    assertEquals(StandardDeck, game.getDeckType());
   }
 
 }

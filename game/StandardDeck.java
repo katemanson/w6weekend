@@ -1,13 +1,13 @@
 package game;
 import java.util.*;
 
-public class Deck extends SetOfCards {
+public class StandardDeck extends SetOfCards implements Decker {
 
-  public void buildStandardDeck() {
+  public void buildDeck() {
     for (Suit suit : Suit.values() ) {
       for (Rank rank : Rank.values() ) {
         Card card = new Card(suit, rank);
-        this.deck.add(card);
+        this.cards.add(card);
       }
     }
   }

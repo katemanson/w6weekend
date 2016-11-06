@@ -21,11 +21,11 @@ public class SetOfCards {
     this.cards.add(card);
   }
   
-  public Card getCardByIndex(int index) {
+  public Card getCardWithIndex(int index) {
     return this.cards.get(index);
   }
 
-  public Card removeCardByIndex(int index) {
+  public Card removeCardWithIndex(int index) {
     return this.cards.remove(index);
   }
 

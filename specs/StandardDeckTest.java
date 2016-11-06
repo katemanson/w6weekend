@@ -2,14 +2,14 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import game.*;
 
-public class DeckTest {
+public class StandardDeckTest {
 
-  Deck deck;
+  StandardDeck deck;
   Card card;
 
   @Before
   public void before() {
-    deck = new Deck();
+    deck = new StandardDeck();
     card = new Card(Suit.HEARTS, Rank.QUEEN);
   }
 
@@ -26,13 +26,13 @@ public class DeckTest {
 
   @Test
   public void canBuildStandardDeck() {
-    deck.buildStandardDeck();
+    deck.buildDeck();
     assertEquals(52, deck.countCards());
   }
 
   @Test
   public void canGetFirstCard() {
-    deck.buildStandardDeck();
+    deck.buildDeck();
     Card firstCard = deck.getFirstCard();
     assertEquals(Rank.ACE, firstCard.getRank());
     assertEquals(Suit.SPADES, firstCard.getSuit());
@@ -40,7 +40,7 @@ public class DeckTest {
 
   @Test
   public void canRemoveFirstCard() {
-    deck.buildStandardDeck();
+    deck.buildDeck();
     Card firstCard = deck.removeFirstCard();
     Card newFirstCard = deck.getFirstCard();
     assertEquals(Rank.ACE, firstCard.getRank());

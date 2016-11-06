@@ -5,33 +5,24 @@ public class Runner {
 
   public static void main(String[] args) {
 
-    // Player player = new Player("Player");
-    // System.out.println(player.getHand());
-    // System.out.println(player.getHand().getClass());
+  SetOfCards cards = new SetOfCards();
+  cards.addCard(new Card(Suit.HEARTS, Rank.ACE));
+  cards.addCard(new Card(Suit.HEARTS, Rank.TWO));
+  cards.addCard(new Card(Suit.HEARTS, Rank.THREE));
+  cards.addCard(new Card(Suit.HEARTS, Rank.FOUR));
+  cards.addCard(new Card(Suit.HEARTS, Rank.FIVE));
+  cards.addCard(new Card(Suit.HEARTS, Rank.SIX));
+  cards.addCard(new Card(Suit.CLUBS, Rank.ACE));
+  cards.addCard(new Card(Suit.CLUBS, Rank.TWO));
+  cards.addCard(new Card(Suit.CLUBS, Rank.THREE));
+  cards.addCard(new Card(Suit.CLUBS, Rank.FOUR));
+  cards.addCard(new Card(Suit.CLUBS, Rank.FIVE));
+  cards.addCard(new Card(Suit.CLUBS, Rank.SIX));
 
-    // Game game = new Game(2);
-    // game.buildDeck();
-    // System.out.println(game.getDeck());
+  cards.shuffle();
 
-
-    // Deck testDeck = new Deck();
-    // testDeck.buildStandardDeck();
-    // testDeck.shuffle();
-    // ArrayList<Card> deck = testDeck.getDeck();
-    // int counter = 0;
-    // for (Card card : deck ) {
-    //   System.out.println(deck.indexOf(card) + ": " + card.getRank() + " of " + card.getSuit() );
-    // }
-    // System.out.println(deck.remove(0));
-    // for (Card card : deck ) {
-    //   System.out.println(deck.indexOf(card) + ": " + card.getRank() + " of " + card.getSuit() );
-    // }
-
-
-    // Card firstCard = testDeck.getFirstCard();
-    // System.out.println("First card is " + firstCard.getRank() + " of " + firstCard.getSuit() + ".");
-
-
+  for (Card card : cards.getSetOfCards() ) {
+  System.out.println(card.getRank() + " of " + card.getSuit());
   }
-
+  }
 }

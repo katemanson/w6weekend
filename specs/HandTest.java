@@ -4,15 +4,15 @@ import game.*;
 
 public class HandTest {
 
-  Hand hand;
-  Card cardOne;
-  Card cardTwo;
+  SetOfCards hand;
+  Card aceOfHearts;
+  Card nineOfClubs;
 
   @Before
   public void before() {
     hand = new Hand();
-    cardOne = new Card(Suit.HEARTS, Rank.ACE);
-    cardTwo = new Card(Suit.CLUBS, Rank.NINE);
+    aceOfHearts = new Card(Suit.HEARTS, Rank.ACE);
+    nineOfClubs = new Card(Suit.CLUBS, Rank.NINE);
   }
 
   @Test
@@ -22,24 +22,24 @@ public class HandTest {
 
   @Test
   public void canAddCards() {
-    hand.addCard(cardOne);
-    hand.addCard(cardTwo);
+    hand.addCard(aceOfHearts);
+    hand.addCard(nineOfClubs);
     assertEquals(2, hand.countCards());
   }
 
   @Test
-  public void canGetCard() {
-    hand.addCard(cardOne);
-    Card card = hand.getCard(0);
+  public void canGetCardWithIndex() {
+    hand.addCard(aceOfHearts);
+    Card card = hand.getCardWithIndex(0);
     assertEquals(Suit.HEARTS, card.getSuit());
     assertEquals(Rank.ACE, card.getRank());
   }
 
   @Test
-  public void canRemoveCard() {
-    hand.addCard(cardOne);
-    hand.addCard(cardTwo);
-    Card card = hand.removeCard(1);
+  public void canRemoveCardWithIndex() {
+    hand.addCard(aceOfHearts);
+    hand.addCard(nineOfClubs);
+    Card card = hand.removeCardWithIndex(1);
     assertEquals(1, hand.countCards());
     assertEquals(Suit.CLUBS, card.getSuit());
     assertEquals(Rank.NINE, card.getRank());

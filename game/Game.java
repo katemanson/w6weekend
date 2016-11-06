@@ -4,22 +4,21 @@ import java.util.*;
 public class Game {
 
   private ArrayList<Player> players;
-  private Deck deck;
+  private Decker deckType;
 
-  public Game() {
+  public Game(Decker deckType) {
     this.players = new ArrayList<Player>();
-    this.deck = new Deck();
+    this.deckType = deckType;
   }
 
-  public Deck getDeck() {
-    return this.deck;
+  public Decker getDeckType() {
+    return this.deckType;
   }
 
   public ArrayList<Player> getPlayers() {
     return this.players;
   }
 
-  // ?okay to create new Player here ?
   public void addPlayer(String name) {
     this.players.add(new Player(name));
   }
@@ -29,11 +28,11 @@ public class Game {
   }
 
   public void deal(int numberOfCardsToDeal) {
-    this.deck.buildStandardDeck();
-    this.deck.shuffle();
+    this.deckType.buildDeck();
+    this.deckType.shuffle();
     for ( int i = 0; i < numberOfCardsToDeal; i++ ) {
       for ( Player player : this.players ) {
-        Card dealtCard = this.deck.removeFirstCard();
+        Card dealtCard = this.deckType.removeFirstCard();
         player.getHand().addCard(dealtCard);
       }
     }
@@ -41,12 +40,12 @@ public class Game {
 
   public int getHandValueForPlayer(int playerIndex) {
     Player player = getPlayer(playerIndex);
-    ArrayList<Card> hand = player.getHand().getHand();
+    ArrayList<Card> hand = player.getHand().getSetOfCards();
     int handValue = 0;
     int cardValue = 0;
     for (Card card : hand) {
       switch (card.getRank()) {
-        case ACE: cardValue = 1;
+        case ACE: cardValue = 11;
                   break;
         case TWO: cardValue = 2;
                   break;
@@ -74,7 +73,7 @@ public class Game {
   }
 
   public void stickOrTwist(int playerIndex, String playerDecision) {
-    if (playerDecision == "T") {
+    if (playerDecision == "t") {
       Card dealtCard = this.deck.removeFirstCard();
       getPlayer(playerIndex).getHand().addCard(dealtCard);
     }
