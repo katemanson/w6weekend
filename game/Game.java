@@ -81,16 +81,31 @@ public class Game {
     return;
   }
 
-  public Player getWinner() {
-    if (getHandValueForPlayer(0) > getHandValueForPlayer(1)) {
-      return getPlayer(0);
-    }
-    else if (getHandValueForPlayer(0) < getHandValueForPlayer(1)) {
-      return getPlayer(1);
-    }
-    else {
+  public boolean checkIfPlayerBust(int playerIndex) {
+    return getHandValueForPlayer(playerIndex) > 21;
+  }
+
+  public Player checkForWinner() {
+    if (checkIfPlayerBust(0) && checkIfPlayerBust(1)) {
       return null;
     }
+    else if (checkIfPlayerBust(0) || checkIfPlayerBust(1)) {
+      for (Player player : this.players) {
+        int index = this.players.indexOf(player);
+        if (checkIfPlayerBust(index) != true) {
+          return player;
+        }
+      }
+    }
+    else {
+      if (getHandValueForPlayer(0) > getHandValueForPlayer(1)) {
+        return getPlayer(0);
+      }
+      else if (getHandValueForPlayer(0) < getHandValueForPlayer(1)) {
+        return getPlayer(1);
+      }
+    }
+    return null;
   }
 
 }

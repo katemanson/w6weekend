@@ -58,27 +58,27 @@ public class GameTest {
     assertEquals(12, game.getHandValueForPlayer(0));
   }
 
-  @Test
-  public void canGetWinner() {
-    game.addPlayer("Dealer0");
-    game.getPlayer(0).getHand().addCard(twoOfHearts);
-    game.getPlayer(0).getHand().addCard(kingOfClubs);
-    game.addPlayer("Player1");
-    game.getPlayer(1).getHand().addCard(aceOfDiamonds);
-    game.getPlayer(1).getHand().addCard(sevenOfSpades);
-    assertEquals("Dealer0", game.getWinner().getName());
-  }
+  // @Test
+  // public void canGetWinner() {
+  //   game.addPlayer("Dealer0");
+  //   game.getPlayer(0).getHand().addCard(twoOfHearts);
+  //   game.getPlayer(0).getHand().addCard(kingOfClubs);
+  //   game.addPlayer("Player1");
+  //   game.getPlayer(1).getHand().addCard(aceOfDiamonds);
+  //   game.getPlayer(1).getHand().addCard(sevenOfSpades);
+  //   assertEquals("Dealer0", game.getWinner().getName());
+  // }
 
-  @Test
-  public void canGetDraw() {
-    game.addPlayer("Dealer0");
-    game.getPlayer(0).getHand().addCard(twoOfHearts);
-    game.getPlayer(0).getHand().addCard(kingOfClubs);
-    game.addPlayer("Player1");
-    game.getPlayer(1).getHand().addCard(sixOfSpades);
-    game.getPlayer(1).getHand().addCard(sixOfClubs);
-    assertEquals(null, game.getWinner());
-  }
+  // @Test
+  // public void canGetDraw() {
+  //   game.addPlayer("Dealer0");
+  //   game.getPlayer(0).getHand().addCard(twoOfHearts);
+  //   game.getPlayer(0).getHand().addCard(kingOfClubs);
+  //   game.addPlayer("Player1");
+  //   game.getPlayer(1).getHand().addCard(sixOfSpades);
+  //   game.getPlayer(1).getHand().addCard(sixOfClubs);
+  //   assertEquals(null, game.getWinner());
+  // }
 
   @Test
   public void canStickOrTwist() {
@@ -92,6 +92,63 @@ public class GameTest {
     game.stickOrTwist(0, "S");
     assertEquals(2, game.getPlayer(0).getHand().countCards());
     assertEquals(3, game.getPlayer(1).getHand().countCards());
+  }
+
+  @Test
+  public void canCheckIfPlayerBust() {
+    game.addPlayer("Dealer0");
+    game.getPlayer(0).getHand().addCard(sevenOfSpades);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    assertEquals(false, game.checkIfPlayerBust(0));
+    game.getPlayer(0).getHand().addCard(sixOfClubs);
+    assertEquals(true, game.checkIfPlayerBust(0));
+  }
+
+  @Test
+  public void canCheckForWinner__bothBust() {
+    game.addPlayer("Dealer0");
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.addPlayer("Player1");
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    assertEquals(null, game.checkForWinner());
+  }
+
+  @Test
+  public void canCheckForWinner__oneBust() {
+    game.addPlayer("Dealer0");
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.addPlayer("Player1");
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    assertEquals("Player1", game.checkForWinner().getName());
+  }
+
+  @Test
+  public void canCheckForWinner__neitherBustWin() {
+    game.addPlayer("Dealer0");
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.addPlayer("Player1");
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    game.getPlayer(1).getHand().addCard(sixOfClubs);
+    assertEquals("Dealer0", game.checkForWinner().getName());
+  }
+
+  @Test
+  public void canCheckForWinner__neitherBustDraw() {
+    game.addPlayer("Dealer0");
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.getPlayer(0).getHand().addCard(kingOfClubs);
+    game.addPlayer("Player1");
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    game.getPlayer(1).getHand().addCard(kingOfClubs);
+    assertEquals(null, game.checkForWinner());
   }
 
 }
