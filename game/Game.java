@@ -4,14 +4,15 @@ import java.util.*;
 public class Game {
 
   private ArrayList<Player> players;
-  private Decker deckType;
+  private Deck deckType;
 
-  public Game(Decker deckType) {
+  public Game(Deck deckType) {
     this.players = new ArrayList<Player>();
     this.deckType = deckType;
   }
 
-  public Decker getDeckType() {
+// ?TEST!
+  public Deck getDeckType() {
     return this.deckType;
   }
 
@@ -74,7 +75,7 @@ public class Game {
 
   public void stickOrTwist(int playerIndex, String playerDecision) {
     if (playerDecision == "t") {
-      Card dealtCard = this.deck.removeFirstCard();
+      Card dealtCard = this.deckType.removeFirstCard();
       getPlayer(playerIndex).getHand().addCard(dealtCard);
     }
     return;

@@ -1,7 +1,6 @@
 package game;
-import java.util.*;
 
-public class StandardDeck extends SetOfCards implements Decker {
+public class StandardDeck extends Deck {
 
   public void buildDeck() {
     for (Suit suit : Suit.values() ) {

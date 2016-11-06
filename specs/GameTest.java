@@ -44,7 +44,7 @@ public class GameTest {
     game.addPlayer("Player1");
     game.addPlayer("Player2");
     game.deal(2);
-    assertEquals(46, game.getDeck().countCards());
+    assertEquals(46, game.getDeckType().countCards());
     assertEquals(2, game.getPlayer(0).getHand().countCards());
     assertEquals(2, game.getPlayer(1).getHand().countCards());
     assertEquals(2, game.getPlayer(2).getHand().countCards());
@@ -85,11 +85,11 @@ public class GameTest {
     game.addPlayer("Dealer0");
     game.addPlayer("Player1");
     game.deal(2);
-    assertEquals(48, game.getDeck().countCards());
+    assertEquals(48, game.getDeckType().countCards());
     assertEquals(2, game.getPlayer(0).getHand().countCards());
     assertEquals(2, game.getPlayer(1).getHand().countCards());
-    game.stickOrTwist(1, "T");
-    game.stickOrTwist(0, "S");
+    game.stickOrTwist(1, "t");
+    game.stickOrTwist(0, "s");
     assertEquals(2, game.getPlayer(0).getHand().countCards());
     assertEquals(3, game.getPlayer(1).getHand().countCards());
   }
@@ -149,11 +149,6 @@ public class GameTest {
     game.getPlayer(1).getHand().addCard(kingOfClubs);
     game.getPlayer(1).getHand().addCard(kingOfClubs);
     assertEquals(null, game.checkForWinner());
-  }
-
-  @Test
-  public void canGetDeckType() {
-    assertEquals(StandardDeck, game.getDeckType());
   }
 
 }

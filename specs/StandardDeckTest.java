@@ -4,7 +4,7 @@ import game.*;
 
 public class StandardDeckTest {
 
-  StandardDeck deck;
+  Deck deck;
   Card card;
 
   @Before
