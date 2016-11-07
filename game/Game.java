@@ -4,16 +4,18 @@ import java.util.*;
 public class Game {
 
   private ArrayList<Player> players;
-  private Deck deckType;
+  private Deck gameDeck;
+  private Valuer valueType;
 
-  public Game(Deck deckType) {
+  public Game(Deck gameDeck, Valuer valueType) {
     this.players = new ArrayList<Player>();
-    this.deckType = deckType;
+    this.gameDeck = gameDeck;
+    this.valueType = valueType;
   }
 
-// ?TEST!
-  public Deck getDeckType() {
-    return this.deckType;
+// ?TEST?
+  public Deck getGameDeck() {
+    return this.gameDeck;
   }
 
   public ArrayList<Player> getPlayers() {
@@ -29,11 +31,11 @@ public class Game {
   }
 
   public void deal(int numberOfCardsToDeal) {
-    this.deckType.buildDeck();
-    this.deckType.shuffle();
+    this.gameDeck.buildDeck();
+    this.gameDeck.shuffle();
     for ( int i = 0; i < numberOfCardsToDeal; i++ ) {
       for ( Player player : this.players ) {
-        Card dealtCard = this.deckType.removeFirstCard();
+        Card dealtCard = this.gameDeck.removeFirstCard();
         player.getHand().addCard(dealtCard);
       }
     }
@@ -42,40 +44,13 @@ public class Game {
   public int getHandValueForPlayer(int playerIndex) {
     Player player = getPlayer(playerIndex);
     ArrayList<Card> hand = player.getHand().getSetOfCards();
-    int handValue = 0;
-    int cardValue = 0;
-    for (Card card : hand) {
-      switch (card.getRank()) {
-        case ACE: cardValue = 11;
-                  break;
-        case TWO: cardValue = 2;
-                  break;
-        case THREE: cardValue = 3;
-                  break;
-        case FOUR: cardValue = 4;
-                  break;
-        case FIVE: cardValue = 5;
-                  break;
-        case SIX: cardValue = 6;
-                  break;
-        case SEVEN: cardValue = 7;
-                  break;
-        case EIGHT: cardValue = 8;
-                  break;
-        case NINE: cardValue = 9;
-                  break;
-        case TEN: case JACK: case QUEEN: case KING:
-                  cardValue = 10;
-                  break;
-      } 
-      handValue += cardValue;
-    }
-    return handValue;
+    int value = this.valueType.getHandValue(hand);
+    return value;
   }
 
   public void stickOrTwist(int playerIndex, String playerDecision) {
     if (playerDecision == "t") {
-      Card dealtCard = this.deckType.removeFirstCard();
+      Card dealtCard = this.gameDeck.removeFirstCard();
       getPlayer(playerIndex).getHand().addCard(dealtCard);
     }
     return;

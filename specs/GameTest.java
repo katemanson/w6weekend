@@ -15,7 +15,7 @@ public class GameTest {
 
   @Before
   public void before() {
-    game = new Game(new StandardDeck());
+    game = new Game(new StandardDeck(), new PontoonValues());
     twoOfHearts = new Card(Suit.HEARTS, Rank.TWO);
     kingOfClubs = new Card(Suit.CLUBS, Rank.KING);
     aceOfDiamonds = new Card(Suit.DIAMONDS, Rank.ACE);
@@ -44,7 +44,7 @@ public class GameTest {
     game.addPlayer("Player1");
     game.addPlayer("Player2");
     game.deal(2);
-    assertEquals(46, game.getDeckType().countCards());
+    assertEquals(46, game.getGameDeck().countCards());
     assertEquals(2, game.getPlayer(0).getHand().countCards());
     assertEquals(2, game.getPlayer(1).getHand().countCards());
     assertEquals(2, game.getPlayer(2).getHand().countCards());
@@ -85,7 +85,7 @@ public class GameTest {
     game.addPlayer("Dealer0");
     game.addPlayer("Player1");
     game.deal(2);
-    assertEquals(48, game.getDeckType().countCards());
+    assertEquals(48, game.getGameDeck().countCards());
     assertEquals(2, game.getPlayer(0).getHand().countCards());
     assertEquals(2, game.getPlayer(1).getHand().countCards());
     game.stickOrTwist(1, "t");
